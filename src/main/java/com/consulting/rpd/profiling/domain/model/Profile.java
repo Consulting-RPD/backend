@@ -22,7 +22,7 @@ public class Profile {
     @NotNull
     @NotBlank
     @Size(min = 5,max = 30)
-    private String name;
+    private String firstName;
 
     @NotNull
     @NotBlank
