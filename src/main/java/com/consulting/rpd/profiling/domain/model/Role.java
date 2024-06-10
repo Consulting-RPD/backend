@@ -19,14 +19,14 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @NotBlank
-    @Size(max = 24)
+    @Size(min = 1,max = 24)
     @Column(unique = true)
     private String name;
 
     // Relationships
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "role")
     private Set<Profile> profiles;
 }
