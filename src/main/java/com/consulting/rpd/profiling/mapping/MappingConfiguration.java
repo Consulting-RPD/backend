@@ -7,4 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class MappingConfiguration {
     @Bean
     public ProfileMapper profileMapper() {return new ProfileMapper();}
+
+    @Bean
+    public RoleMapper roleMapper() {return new RoleMapper();}
 }
