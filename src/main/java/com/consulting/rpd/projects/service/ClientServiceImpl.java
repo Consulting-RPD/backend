@@ -64,8 +64,7 @@ public class ClientServiceImpl implements ClientService {
         }
 
         return clientRepository.findById(clientId)
-                .map(clientToUpdate -> clientRepository.save(
-                   clientToUpdate.withClientCode(client.getClientCode())
+                .map(clientToUpdate -> clientRepository.save(clientToUpdate.withClientCode(client.getClientCode())
                 ))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, clientId));
     }
