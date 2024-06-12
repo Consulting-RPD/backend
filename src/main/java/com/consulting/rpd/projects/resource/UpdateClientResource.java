@@ -32,5 +32,5 @@ public class UpdateClientResource {
 
     @NotNull
     @NotBlank
-    private String clientCode;
+    private String clientId;
 }

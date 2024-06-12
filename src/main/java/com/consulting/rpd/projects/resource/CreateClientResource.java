@@ -38,5 +38,5 @@ public class CreateClientResource {
 
     @NotNull
     @NotBlank
-    private String clientCode;
+    private String clientId;
 }
