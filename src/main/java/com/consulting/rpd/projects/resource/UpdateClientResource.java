@@ -15,11 +15,9 @@ public class UpdateClientResource {
     private String legalName;
 
     @NotNull
-    @NotBlank
     private Integer ruc;
 
     @NotNull
-    @NotBlank
     private Date registrationDate;
 
     @NotNull
@@ -32,5 +30,5 @@ public class UpdateClientResource {
 
     @NotNull
     @NotBlank
-    private String clientId;
+    private String clientCode;
 }

@@ -28,11 +28,9 @@ public class Client {
     private String legalName;
 
     @NotNull
-    @NotBlank
     private Integer ruc;
 
     @NotNull
-    @NotBlank
     private Date registrationDate;
 
     @NotNull

@@ -18,7 +18,6 @@ public class UpdateProjectResource {
     private String projectCorrelative;
 
     @NotNull
-    @NotBlank
     private Date registrationDate;
 
     @NotNull

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@Service
 public class ProjectServiceImpl implements ProjectService {
     private static final String ENTITY = "Project";
     private final ProjectRepository projectRepository;

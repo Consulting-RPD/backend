@@ -32,7 +32,6 @@ public class Project {
     private String projectCorrelative;
 
     @NotNull
-    @NotBlank
     private Date registrationDate;
 
     @NotNull

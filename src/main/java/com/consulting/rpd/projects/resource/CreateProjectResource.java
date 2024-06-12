@@ -24,7 +24,6 @@ public class CreateProjectResource {
     private String projectCorrelative;
 
     @NotNull
-    @NotBlank
     private Date registrationDate;
 
     @NotNull
