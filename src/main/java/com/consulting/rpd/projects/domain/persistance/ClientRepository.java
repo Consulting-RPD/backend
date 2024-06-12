@@ -8,13 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-    List<Client> getAll();
-    Page<Client> getAll(Pageable pageable);
-    Client getById(Long clientId);
-    Client create(Client client);
-    Client update(Long clientId, Client client);
-    ResponseEntity<?> delete(Long clientId);
+    Optional<Client> findByClientCode(String clientCode);
+    boolean existsByClientCode(String clientCode);
 }
