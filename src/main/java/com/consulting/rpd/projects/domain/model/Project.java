@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
@@ -22,10 +23,12 @@ public class Project {
 
     @NotNull
     @NotBlank
+    @Size(max = 10)
     private String projectCode;
 
     @NotNull
     @NotBlank
+    @Size(max = 1)
     private String projectCorrelative;
 
     @NotNull
