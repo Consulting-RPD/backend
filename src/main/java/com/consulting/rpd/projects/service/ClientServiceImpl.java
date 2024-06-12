@@ -4,12 +4,14 @@ import com.consulting.rpd.projects.domain.model.Client;
 import com.consulting.rpd.projects.domain.persistance.ClientRepository;
 import com.consulting.rpd.projects.domain.service.ClientService;
 import com.consulting.rpd.shared.exception.ResourceNotFoundException;
+import com.consulting.rpd.shared.exception.ResourceValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,5 +56,27 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client update
+    public Client update(Long clientId, Client client){
+        Set<ConstraintViolation<Client>> violations = validator.validate(client);
+
+        if (!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
+
+        return clientRepository.findById(clientId)
+                .map(clientToUpdate -> clientRepository.save(
+                   clientToUpdate.withClientCode(client.getClientCode())
+                ))
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, clientId));
+    }
+
+    @Override
+    public ResponseEntity<?> delete(Long clientId) {
+        return clientRepository.findById(clientId)
+                .map(client -> {
+                    clientRepository.delete(client);
+                    return ResponseEntity.ok().build();
+                })
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, clientId));
+    }
 }
