@@ -36,7 +36,7 @@ public class ClientController {
     }
 
     @Operation(summary = "Get profile by ID")
-    @GetMapping
+    @GetMapping("{clientId}")
     public ClientResource getClientById(@PathVariable Long clientId) {
         return mapper.toResource(clientService.getById(clientId));
     }
@@ -70,7 +70,7 @@ public class ClientController {
                     description = "Client not found"
             )
     })
-    @PostMapping
+    @PostMapping("{clientId}")
     public ClientResource updateClient(@PathVariable Long clientId, @RequestBody UpdateClientResource resource) {
         return mapper.toResource(clientService.update(clientId, mapper.toModel(resource)));
     }
