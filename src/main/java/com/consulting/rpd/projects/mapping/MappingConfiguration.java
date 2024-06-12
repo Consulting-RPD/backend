@@ -9,4 +9,9 @@ public class MappingConfiguration {
     public ClientMapper clientMapper(){
         return new ClientMapper();
     }
+
+    @Bean
+    public ProjectMapper projectMapper(){
+        return new ProjectMapper();
+    }
 }
