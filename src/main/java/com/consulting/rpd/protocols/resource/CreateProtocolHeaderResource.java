@@ -1,8 +1,6 @@
-package com.consulting.rpd.protocols.domain.model;
+package com.consulting.rpd.protocols.resource;
 
-import com.consulting.rpd.projects.domain.model.Project;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -13,16 +11,10 @@ import java.util.Date;
 
 @Getter
 @Setter
-@With
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "protocol_header")
-public class ProtocolHeader {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@ToString
+public class CreateProtocolHeaderResource {
     @NotNull
     @NotBlank
     private String protocolNumber;
@@ -43,9 +35,7 @@ public class ProtocolHeader {
     @NotNull
     private Date date;
 
-    //Relationships
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    @JsonIgnore
-    private Project project;
+    @NotNull
+    @NotBlank
+    private Long projectId;
 }
