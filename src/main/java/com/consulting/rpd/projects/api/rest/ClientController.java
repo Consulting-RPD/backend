@@ -70,7 +70,7 @@ public class ClientController {
                     description = "Client not found"
             )
     })
-    @PostMapping("{clientId}")
+    @PutMapping("{clientId}")
     public ClientResource updateClient(@PathVariable Long clientId, @RequestBody UpdateClientResource resource) {
         return mapper.toResource(clientService.update(clientId, mapper.toModel(resource)));
     }
