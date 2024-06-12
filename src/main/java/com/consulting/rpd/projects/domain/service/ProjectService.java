@@ -9,8 +9,7 @@ import java.util.List;
 
 public interface ProjectService {
     List<Project> getAll();
-    List<Project> getAllByProjectId(Long projectId);
-    Page<Project> getAll(Long projectId, Pageable pageable);
+    Page<Project> getAll(Pageable pageable);
     Project getById(Long projectId);
     Project create(Project project);
     Project update(Long projectId,Project project);
