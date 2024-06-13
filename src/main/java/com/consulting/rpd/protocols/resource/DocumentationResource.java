@@ -7,8 +7,8 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class DocumentationResource {
+    private String observations;
     private Integer approvedPlans;
     private Integer compTechSpec;
     private Integer persTrained;
@@ -39,5 +39,5 @@ public class DocumentationResource {
     private Integer instructionsForComponents;
     private Integer careInstructions;
     private Integer operationManual;
-    private Documentation documentation;
+    private Long protocolHeaderId;
 }

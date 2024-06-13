@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Documentation", description = "Create, read, update and delete documentation")
 public class DocumentationController {
     private final DocumentationService documentationService;
-    private DocumentationMapper mapper;
+    private final  DocumentationMapper mapper;
 
     public DocumentationController(DocumentationService documentationService, DocumentationMapper mapper) {
         this.documentationService = documentationService;
@@ -81,7 +81,7 @@ public class DocumentationController {
                     description = "Documentation not found"
             )
     })
-    @DeleteMapping("{DocumentationId}")
+    @DeleteMapping("{documentationId}")
     public ResponseEntity<?> deleteDocumentation(@PathVariable Long documentationId) {
         return documentationService.delete(documentationId);
     }
