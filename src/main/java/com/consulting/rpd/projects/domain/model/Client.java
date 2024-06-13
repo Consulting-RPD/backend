@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -44,4 +45,8 @@ public class Client {
     @NotNull
     @NotBlank
     private String clientCode;
+
+    //Relationships
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "client")
+    private Set<Project> projects;
 }
