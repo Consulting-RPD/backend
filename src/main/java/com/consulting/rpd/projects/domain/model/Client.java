@@ -1,12 +1,13 @@
 package com.consulting.rpd.projects.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -47,6 +48,7 @@ public class Client {
     private String clientCode;
 
     //Relationships
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "client")
-    private Set<Project> projects;
+    @JsonIgnore
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
+    private List<Project> projects;
 }

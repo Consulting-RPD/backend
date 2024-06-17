@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ClientService {
-    List<Client> getAll();
-    Page<Client> getAll(Pageable pageable);
-    Client getById(Long clientId);
     Client create(Client client);
-    Client update(Long clientId, Client client);
-    ResponseEntity<?> delete(Long clientId);
+    Client getClientById(Long id);
+    Client update(Long id, Client client);
+    boolean delete(Long id);
+    List<Client> getAllClients();
+    Client findByTradeName(String name);
 }

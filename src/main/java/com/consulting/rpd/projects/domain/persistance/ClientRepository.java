@@ -12,6 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-    Optional<Client> findByClientCode(String clientCode);
-    boolean existsByClientCode(String clientCode);
+    public boolean existsById(Long id);
+    Optional<Client> findByTradeName(String tradeName);
 }
