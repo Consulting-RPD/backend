@@ -5,8 +5,6 @@ import com.consulting.rpd.projects.domain.service.ClientService;
 import com.consulting.rpd.projects.mapping.ClientMapper;
 import com.consulting.rpd.projects.resource.ClientResource;
 import com.consulting.rpd.projects.resource.CreateClientResource;
-import com.consulting.rpd.projects.resource.ProjectResource;
-import com.consulting.rpd.projects.resource.UpdateClientResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
