@@ -20,6 +20,4 @@ public class ClientResource {
     private String city;
     private String country;
     private String clientCode;
-    private List<Project> projects;
-
 }

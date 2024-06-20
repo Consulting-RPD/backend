@@ -29,59 +29,63 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final Validator validator;
 
-    @Transactional
+    @Override
+    public List<Client> getAll() {
+        return clientRepository.findAll();
+    }
+
+    @Override
+    public Page<Client> getAll(Pageable pageable) {
+        return clientRepository.findAll(pageable);
+    }
+
+    @Override
+    public Client getById(Long clientId){
+        return clientRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, clientId));
+    }
+
     @Override
     public Client create(Client client) {
-        Set<ConstraintViolation<Client>> violation = validator.validate(client);
-        if (violation.isEmpty()) {
-            return clientRepository.save(client);
+        Set<ConstraintViolation<Client>> violations = validator.validate(client);
+
+        if(!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
         }
-        throw new ResourceValidationException(ENTITY, violation);
+
+        if(clientRepository.findByClientCode(client.getClientCode()).isPresent()) {
+            throw new ResourceValidationException(ENTITY, "A client with this code already exists");
+        }
+
+        return clientRepository.save(client);
     }
 
-    @Transactional
     @Override
-    public Client getClientById(Long id) {
+    public Client update(Long clientId, Client client) {
+        Set<ConstraintViolation<Client>> violations = validator.validate(client);
+
+        if(!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
+
+        Optional<Client> optionalClient = clientRepository.findByClientCode(client.getClientCode());
+
+        if(optionalClient.isPresent() && !optionalClient.get().getId().equals(client.getId())) {
+            throw new ResourceValidationException(ENTITY, "A role with the same code already exists");
+        }
+
+        return clientRepository.findById(clientId)
+                .map(clientToUpdate -> clientRepository.save(clientToUpdate.withClientCode(client.getClientCode())))
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, clientId));
+    }
+
+    @Override
+    public ResponseEntity<?> delete(Long id) {
         return clientRepository.findById(id)
+                .map(client -> {
+                    clientRepository.delete(client);
+                    return ResponseEntity.ok().build();
+                })
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
-    }
-
-    @Transactional
-    @Override
-    public Client update(Long id, Client client) {
-        if(clientRepository.existsById(id)) {
-            client.setId(id);
-            client.setProjects(getClientById(id).getProjects());
-            return clientRepository.save(client);
-        }
-        throw new ResourceValidationException(ENTITY, "Client not found");
-    }
-
-    @Transactional
-    @Override
-    public boolean delete(Long id) {
-        if(clientRepository.existsById(id)) {
-            clientRepository.deleteById(id);
-            return !clientRepository.existsById(id);
-        }
-        throw new ResourceNotFoundException(ENTITY, id);
-    }
-
-    @Override
-    public List<Client> getAllClients() {
-        List<Client> clients = clientRepository.findAll();
-        for (Client client : clients) {
-            Hibernate.initialize(client.getProjects());
-        }
-        return clients;
-    }
-
-    @Override
-    public Client findByTradeName(String tradeName) {
-        Optional<Client> optionalClient = clientRepository.findByTradeName(tradeName);
-        if(optionalClient.isPresent()) {
-            return optionalClient.get();
-        }
-        throw new FetchNotFoundException(ENTITY, "TradeName", tradeName);
     }
 }

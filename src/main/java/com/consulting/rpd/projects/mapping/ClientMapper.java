@@ -15,17 +15,21 @@ import java.util.List;
 
 public class ClientMapper implements Serializable {
     @Autowired
-    private EnhancedModelMapper mapper;
+    EnhancedModelMapper mapper;
 
-    public ClientResource toResource(Client model) {return mapper.map(model, ClientResource.class);}
-
-    public Client toModel(CreateClientResource resource) {return mapper.map(resource, Client.class);}
-
-    public Client toModel(UpdateClientResource resource) {return mapper.map(resource, Client.class);}
-
-    public Client toEntity(CreateClientResource resource) {return this.mapper.map(resource, Client.class);}
+    public ClientResource toResource(Client model) {
+        return mapper.map(model, ClientResource.class);
+    }
 
     public Page<ClientResource> modelListPage(List<Client> modelList, Pageable pageable) {
         return new PageImpl<>(mapper.mapList(modelList, ClientResource.class), pageable, modelList.size());
+    }
+
+    public Client toModel(CreateClientResource model) {
+        return mapper.map(model, Client.class);
+    }
+
+    public Client toModel(UpdateClientResource model) {
+        return mapper.map(model, Client.class);
     }
 }
