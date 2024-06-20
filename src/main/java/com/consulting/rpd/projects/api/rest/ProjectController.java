@@ -1,5 +1,6 @@
 package com.consulting.rpd.projects.api.rest;
 
+import com.consulting.rpd.projects.domain.model.Project;
 import com.consulting.rpd.projects.domain.service.ProjectService;
 import com.consulting.rpd.projects.mapping.ProjectMapper;
 import com.consulting.rpd.projects.resource.CreateProjectForClientResource;
@@ -17,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -38,6 +41,11 @@ public class ProjectController {
         return mapper.toResource(projectService.getById(projectId));
     }
 
+    @Operation(summary = "Get projects by client ID")
+    @GetMapping("/client/{clientId}")
+    public List<Project> getProjectsByClientId(@PathVariable Long clientId) {
+        return projectService.getAllByClientId(clientId);
+    }
     /* @Operation(summary = "Create project", responses = {
             @ApiResponse(
                     description = "Project succesfully created",
@@ -97,7 +105,7 @@ public class ProjectController {
                     )
             )
     })
-    @PostMapping("/client/{clientId}")
+    @PostMapping("/{clientId}")
     public ResponseEntity<ProjectResource> createProjectForClient(@PathVariable Long clientId, @RequestBody CreateProjectForClientResource resource) {
         return new ResponseEntity<>(mapper.toResource(projectService.createForClient(clientId, mapper.toModel(resource))), HttpStatus.CREATED);
     }
