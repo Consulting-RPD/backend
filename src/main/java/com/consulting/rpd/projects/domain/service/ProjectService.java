@@ -9,9 +9,11 @@ import java.util.List;
 
 public interface ProjectService {
     List<Project> getAll();
+    List<Project> getAllByClientId(Long clientId);
     Page<Project> getAll(Pageable pageable);
     Project getById(Long projectId);
     Project create(Project project);
-    Project update(Long projectId,Project project);
+    Project update(Long projectId, Project project);
     ResponseEntity<?> delete(Long projectId);
+    Project createForClient(Long clientId, Project project);
 }

@@ -43,4 +43,5 @@ public class Project {
     @JoinColumn(name = "client_id", nullable = false)
     @JsonIgnore
     private Client client;
+
 }

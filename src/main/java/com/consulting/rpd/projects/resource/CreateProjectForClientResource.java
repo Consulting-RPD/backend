@@ -3,16 +3,16 @@ package com.consulting.rpd.projects.resource;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
-public class UpdateProjectResource {
-    private Long id;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@With
+public class CreateProjectForClientResource {
     @NotNull
     @NotBlank
     @Size(max = 10)

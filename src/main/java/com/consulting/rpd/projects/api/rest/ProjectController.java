@@ -2,7 +2,7 @@ package com.consulting.rpd.projects.api.rest;
 
 import com.consulting.rpd.projects.domain.service.ProjectService;
 import com.consulting.rpd.projects.mapping.ProjectMapper;
-import com.consulting.rpd.projects.resource.ClientResource;
+import com.consulting.rpd.projects.resource.CreateProjectForClientResource;
 import com.consulting.rpd.projects.resource.CreateProjectResource;
 import com.consulting.rpd.projects.resource.ProjectResource;
 import com.consulting.rpd.projects.resource.UpdateProjectResource;
@@ -11,11 +11,14 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/projects/project", produces = "application/json")
 @Tag(name = "Projects", description = "Create, read, update and delete projects")
@@ -23,19 +26,14 @@ public class ProjectController {
     private final ProjectService projectService;
     private final ProjectMapper mapper;
 
-    public ProjectController(ProjectService projectService, ProjectMapper mapper) {
-        this.projectService = projectService;
-        this.mapper = mapper;
-    }
-
     @Operation(summary = "Get all projects")
     @GetMapping
     public Page<ProjectResource> getAllProjects(Pageable pageable) {
         return mapper.modelListPage(projectService.getAll(), pageable);
     }
 
-    @Operation(summary = "Get profile by ID")
-    @GetMapping("{projectId}")
+    @Operation(summary = "Get project by ID")
+    @GetMapping({"projectId"})
     public ProjectResource getProjectById(@PathVariable Long projectId) {
         return mapper.toResource(projectService.getById(projectId));
     }
@@ -46,13 +44,13 @@ public class ProjectController {
                     responseCode = "201",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = ClientResource.class)
+                            schema = @Schema(implementation = ProjectResource.class)
                     )
             )
     })
     @PostMapping
-    public ProjectResource createProject(@RequestBody CreateProjectResource resource) {
-        return mapper.toResource(projectService.create(mapper.toModel(resource)));
+    public ResponseEntity<ProjectResource> createProject(@RequestBody CreateProjectResource resource) {
+        return new ResponseEntity<>(mapper.toResource(projectService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Update project", responses = {
@@ -61,7 +59,7 @@ public class ProjectController {
                     description = "Project successfully udpated",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = ClientResource.class)
+                            schema = @Schema(implementation = ProjectResource.class)
                     )
             ),
             @ApiResponse(
@@ -87,5 +85,20 @@ public class ProjectController {
     @DeleteMapping("{projectId}")
     public ResponseEntity<?> deleteProject(@PathVariable Long projectId) {
         return projectService.delete(projectId);
+    }
+
+    @Operation(summary = "Create project for a specific client", responses = {
+            @ApiResponse(
+                    description = "Project successfully created",
+                    responseCode = "201",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ProjectResource.class)
+                    )
+            )
+    })
+    @PostMapping("/client/{clientId}")
+    public ResponseEntity<ProjectResource> createProjectForClient(@PathVariable Long clientId, @RequestBody CreateProjectForClientResource resource) {
+        return new ResponseEntity<>(mapper.toResource(projectService.createForClient(clientId, mapper.toModel(resource))), HttpStatus.CREATED);
     }
 }
