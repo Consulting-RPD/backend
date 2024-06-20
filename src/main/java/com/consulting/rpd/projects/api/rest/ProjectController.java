@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/projects/project", produces = "application/json")
-@Tag(name = "Projects", description = "Create, read, update and delete projects")
+@Tag(name = "Projects", description = "Create and read projects")
 public class ProjectController {
     private final ProjectService projectService;
     private final ProjectMapper mapper;
@@ -33,12 +33,12 @@ public class ProjectController {
     }
 
     @Operation(summary = "Get project by ID")
-    @GetMapping({"projectId"})
+    @GetMapping("{projectId}")
     public ProjectResource getProjectById(@PathVariable Long projectId) {
         return mapper.toResource(projectService.getById(projectId));
     }
 
-    @Operation(summary = "Create project", responses = {
+    /* @Operation(summary = "Create project", responses = {
             @ApiResponse(
                     description = "Project succesfully created",
                     responseCode = "201",
@@ -85,7 +85,7 @@ public class ProjectController {
     @DeleteMapping("{projectId}")
     public ResponseEntity<?> deleteProject(@PathVariable Long projectId) {
         return projectService.delete(projectId);
-    }
+    } */
 
     @Operation(summary = "Create project for a specific client", responses = {
             @ApiResponse(

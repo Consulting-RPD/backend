@@ -1,5 +1,6 @@
 package com.consulting.rpd.projects.domain.model;
 
+import com.consulting.rpd.protocols.domain.model.ProtocolHeader;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -44,4 +46,6 @@ public class Project {
     @JsonIgnore
     private Client client;
 
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<ProtocolHeader> protocolHeaders;
 }
