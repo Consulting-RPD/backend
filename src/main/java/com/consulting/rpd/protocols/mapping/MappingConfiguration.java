@@ -18,4 +18,9 @@ public class MappingConfiguration {
     public SignatureMapper signatureMapper(){
         return new SignatureMapper();
     }
+
+    @Bean
+    public CommentMapper commentMapper(){
+        return new CommentMapper();
+    }
 }

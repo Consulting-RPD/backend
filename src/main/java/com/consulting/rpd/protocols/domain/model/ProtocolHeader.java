@@ -53,4 +53,7 @@ public class ProtocolHeader {
 
     @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
     private Signature signatures;
+
+    @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
+    private Comment comment;
 }
