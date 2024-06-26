@@ -1,6 +1,5 @@
 package com.consulting.rpd.protocols.api.rest;
 
-import com.consulting.rpd.projects.resource.ProjectResource;
 import com.consulting.rpd.protocols.domain.model.ProtocolHeader;
 import com.consulting.rpd.protocols.domain.service.ProtocolHeaderService;
 import com.consulting.rpd.protocols.mapping.ProtocolHeaderMapper;
