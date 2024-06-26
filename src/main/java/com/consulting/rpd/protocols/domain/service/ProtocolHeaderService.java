@@ -3,7 +3,6 @@ package com.consulting.rpd.protocols.domain.service;
 import com.consulting.rpd.protocols.domain.model.ProtocolHeader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
