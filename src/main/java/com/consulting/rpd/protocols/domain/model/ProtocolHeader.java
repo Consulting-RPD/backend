@@ -47,4 +47,7 @@ public class ProtocolHeader {
     @JoinColumn(name = "project_id", nullable = false)
     @JsonIgnore
     private Project project;
+
+    @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
+    private Documentation documentation;
 }

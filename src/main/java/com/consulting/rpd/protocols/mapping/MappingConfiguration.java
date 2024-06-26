@@ -9,4 +9,9 @@ public class MappingConfiguration {
     public ProtocolHeaderMapper protocolHeaderMapper() {
         return new ProtocolHeaderMapper();
     }
+
+    @Bean
+    public DocumentationMapper documentationMapper(){
+        return new DocumentationMapper();
+    }
 }
