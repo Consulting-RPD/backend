@@ -50,4 +50,7 @@ public class ProtocolHeader {
 
     @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
     private Documentation documentation;
+
+    @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
+    private Signature signatures;
 }

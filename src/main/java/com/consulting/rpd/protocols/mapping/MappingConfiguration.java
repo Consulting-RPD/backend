@@ -14,4 +14,8 @@ public class MappingConfiguration {
     public DocumentationMapper documentationMapper(){
         return new DocumentationMapper();
     }
+    @Bean
+    public SignatureMapper signatureMapper(){
+        return new SignatureMapper();
+    }
 }
