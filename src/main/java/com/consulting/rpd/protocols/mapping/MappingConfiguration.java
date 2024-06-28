@@ -23,4 +23,9 @@ public class MappingConfiguration {
     public CommentMapper commentMapper(){
         return new CommentMapper();
     }
+
+    @Bean
+    public InitialVerificationMapper initialVerificationMapper(){
+        return new InitialVerificationMapper();
+    }
 }
