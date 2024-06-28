@@ -44,7 +44,7 @@ public class CommentController {
             responseCode = "201",
             content = @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = CreateCommentResource.class)
+                schema = @Schema(implementation = Comment.class)
             )
         )
     })
