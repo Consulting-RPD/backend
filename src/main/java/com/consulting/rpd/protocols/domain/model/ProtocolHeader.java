@@ -56,4 +56,7 @@ public class ProtocolHeader {
 
     @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
     private Comment comment;
+
+    @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
+    private PipeAndAccesories pipeAndAccesories;
 }

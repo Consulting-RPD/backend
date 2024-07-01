@@ -28,4 +28,9 @@ public class MappingConfiguration {
     public InitialVerificationMapper initialVerificationMapper(){
         return new InitialVerificationMapper();
     }
+
+    @Bean
+    public PipeAndAccesoriesMapper pipeAndAccesoriesMapper(){
+        return new PipeAndAccesoriesMapper();
+    }
 }
