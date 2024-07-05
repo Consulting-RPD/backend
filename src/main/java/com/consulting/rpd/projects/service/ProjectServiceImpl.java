@@ -4,7 +4,6 @@ import com.consulting.rpd.projects.domain.model.Project;
 import com.consulting.rpd.projects.domain.persistance.ClientRepository;
 import com.consulting.rpd.projects.domain.persistance.ProjectRepository;
 import com.consulting.rpd.projects.domain.service.ProjectService;
-import com.consulting.rpd.shared.exception.FetchNotFoundException;
 import com.consulting.rpd.shared.exception.ResourceNotFoundException;
 import com.consulting.rpd.shared.exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @AllArgsConstructor

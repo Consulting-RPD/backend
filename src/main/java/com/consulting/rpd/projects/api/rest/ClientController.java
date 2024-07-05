@@ -1,6 +1,5 @@
 package com.consulting.rpd.projects.api.rest;
 
-import com.consulting.rpd.projects.domain.model.Client;
 import com.consulting.rpd.projects.domain.service.ClientService;
 import com.consulting.rpd.projects.mapping.ClientMapper;
 import com.consulting.rpd.projects.resource.ClientResource;
@@ -14,12 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
