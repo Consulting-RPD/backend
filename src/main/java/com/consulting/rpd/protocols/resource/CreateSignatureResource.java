@@ -28,6 +28,5 @@ public class CreateSignatureResource {
     @Size(min = 1, max = 50)
     private String signatureRepresentative;
 
-    @NotNull
     private Date date;
 }

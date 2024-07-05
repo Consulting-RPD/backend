@@ -7,7 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,8 @@ import lombok.With;
 @AllArgsConstructor
 @NoArgsConstructor
 @With
-@Entity(name = "pipeAndAccesories")
+@Entity
+@Table(name = "pipeAndAccesories")
 public class PipeAndAccesories {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,23 +66,23 @@ public class PipeAndAccesories {
     @Column(nullable = true)
     @Size(min = 1, max = 200)
     private String pipesObs;
-    
-    @NotBlank
+
+    @NotNull
     private Integer pipeCleaningCertf;
 
-    @NotBlank
+    @NotNull
     private Integer oilResidueInspection;
 
-    @NotBlank
+    @NotNull
     private Integer pressureApproval;
 
-    @NotBlank
+    @NotNull
     private Integer obstructionCheck;
 
-    @NotBlank
+    @NotNull
     private Integer complianceWithDrawings;
 
-    @NotBlank
+    @NotNull
     private Integer propeInstallationCheck;
 
     //Relationships

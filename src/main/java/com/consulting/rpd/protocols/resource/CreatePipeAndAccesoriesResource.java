@@ -1,6 +1,5 @@
 package com.consulting.rpd.protocols.resource;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,21 +40,15 @@ public class CreatePipeAndAccesoriesResource {
     @Size(min = 1, max = 200)
     private String pipesObs;
 
-    @NotBlank
     private Integer pipeCleaningCertf;
 
-    @NotBlank
     private Integer oilResidueInspection;
 
-    @NotBlank
     private Integer pressureApproval;
 
-    @NotBlank
     private Integer obstructionCheck;
 
-    @NotBlank
     private Integer complianceWithDrawings;
 
-    @NotBlank
     private Integer propeInstallationCheck;
 }
