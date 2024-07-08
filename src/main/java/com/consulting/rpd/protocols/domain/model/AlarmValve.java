@@ -1,10 +1,15 @@
 package com.consulting.rpd.protocols.domain.model;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -37,4 +42,6 @@ public class AlarmValve {
     @JoinColumn(name = "protocol_header_id")
     private ProtocolHeader protocolHeader;
 
+    @OneToMany(mappedBy = "alarmValve", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Set<AlarmValveData> alarmValveData;
 }
