@@ -12,7 +12,7 @@ import lombok.With;
 @NoArgsConstructor
 @With
 public class PipeAndAccesoriesResource {
-    private Long id;
+    private Long pipeId;
     private String pipeType;
     private Integer properInstallation;
     private Integer accessoryType;
