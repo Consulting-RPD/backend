@@ -23,13 +23,14 @@ public class CreateProtocolHeaderResource {
     private String protectedArea;
 
     @NotNull
+    private Date date;
+
+    @NotNull
     @NotBlank
     @Size(min = 1, max = 250)
     private String address;
 
     @NotNull
     private Integer type;
-
-    @NotNull
-    private Date date;
+    
 }

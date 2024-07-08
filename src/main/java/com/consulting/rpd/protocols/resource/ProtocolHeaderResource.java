@@ -12,7 +12,9 @@ import java.util.Date;
 public class ProtocolHeaderResource {
     private Long protocolId;
     private String protocolNumber;
+    private String protectedArea;
+    private Date date;
     private String address;
     private Integer type;
-    private Date date;
+    
 }
