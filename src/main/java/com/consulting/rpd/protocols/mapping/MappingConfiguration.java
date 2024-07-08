@@ -38,4 +38,9 @@ public class MappingConfiguration {
     public SystemLocationMapper systemLocationMapper(){
         return new SystemLocationMapper();
     }
+
+    @Bean
+    public SprinklerMapper sprinklerMapper(){
+        return new SprinklerMapper();
+    }
 }

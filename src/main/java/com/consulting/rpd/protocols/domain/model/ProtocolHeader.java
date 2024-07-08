@@ -62,4 +62,7 @@ public class ProtocolHeader {
 
     @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
     private SystemLocation systemLocation;
+
+    @OneToOne(mappedBy = "protocolHeader", cascade = CascadeType.ALL)
+    private Sprinkler sprinkler;
 }
