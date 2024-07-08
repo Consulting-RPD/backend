@@ -43,4 +43,9 @@ public class MappingConfiguration {
     public SprinklerMapper sprinklerMapper(){
         return new SprinklerMapper();
     }
+
+    @Bean
+    public AlarmValveMapper alarmValveMapper(){
+        return new AlarmValveMapper();
+    }
 }
