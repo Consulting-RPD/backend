@@ -33,4 +33,9 @@ public class MappingConfiguration {
     public PipeAndAccesoriesMapper pipeAndAccesoriesMapper(){
         return new PipeAndAccesoriesMapper();
     }
+
+    @Bean
+    public SystemLocationMapper systemLocationMapper(){
+        return new SystemLocationMapper();
+    }
 }
