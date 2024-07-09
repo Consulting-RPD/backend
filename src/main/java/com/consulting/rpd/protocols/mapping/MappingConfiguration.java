@@ -48,4 +48,9 @@ public class MappingConfiguration {
     public AlarmValveMapper alarmValveMapper(){
         return new AlarmValveMapper();
     }
+
+    @Bean
+    public AlarmValveDataMapper alarmValveDataMapper(){
+        return new AlarmValveDataMapper();
+    }
 }
