@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/api/v1/protocols/protocolHeader", produces = "application/json")
 @Tag(name = "Protocol Header", description = "Create and read protocol headers")
+@CrossOrigin(origins = {"http://localhost:3000/**", "https://rpd-consulting.netlify.app/**", "http://localhost:3000", "https://rpd-consulting.netlify.app"})
 public class ProtocolHeaderController {
     private final ProtocolHeaderService protocolHeaderService;
     private final ProtocolHeaderMapper mapper;
