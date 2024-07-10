@@ -1,53 +1,34 @@
 package com.consulting.rpd.shared.configuration;
 
-import java.util.List;
-
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 @Configuration
-public class GlobalHandlerConfig implements WebMvcConfigurer{
-    @SuppressWarnings("null")
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/");
-    }
-    
-    @SuppressWarnings("null")
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-        .allowedOrigins("http://localhost:3000/**", "https://rpd-consulting.netlify.app/**", "http://localhost:3000", "https://rpd-consulting.netlify.app")
-        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-        .allowedHeaders("*")
-        .allowCredentials(true);
-    }
-    
-    @SuppressWarnings("null")
-    @Override
-    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-        exceptionResolvers.add(new HandlerExceptionResolver() {
+public class GlobalHandlerConfig{
+        
+    @Bean
+    public WebMvcConfigurer addCorsMappings() {
+       return new WebMvcConfigurer() {
+            @SuppressWarnings("null")
             @Override
-            public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-                if (ex instanceof NoHandlerFoundException) {
-                    if (request.getMethod().equals("OPTIONS")) {
-                        response.setStatus(HttpServletResponse.SC_OK);
-                        return new ModelAndView();
-                    } else if (request.getMethod().equals("HEAD")) {
-                        response.setStatus(HttpServletResponse.SC_OK);
-                        return new ModelAndView();
-                    }
-                }
-                return null;
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000/**", "https://rpd-consulting.netlify.app/**", "http://localhost:3000", "https://rpd-consulting.netlify.app")
+                .allowedMethods(
+                    HttpMethod.GET.name(),
+                    HttpMethod.POST.name(),
+                    HttpMethod.PUT.name(),
+                    HttpMethod.DELETE.name(), 
+                    HttpMethod.OPTIONS.name()
+                )
+                .allowedHeaders(HttpHeaders.CONTENT_TYPE,HttpHeaders.AUTHORIZATION)
+                .allowCredentials(true)
+                .maxAge(3600);
             }
-        });
+       };
     }
 }
