@@ -53,4 +53,9 @@ public class MappingConfiguration {
     public AlarmValveDataMapper alarmValveDataMapper(){
         return new AlarmValveDataMapper();
     }
+
+    @Bean
+    public AlarmDeviceTestMapper alarmDeviceTestMapper(){
+        return new AlarmDeviceTestMapper();
+    }
 }
