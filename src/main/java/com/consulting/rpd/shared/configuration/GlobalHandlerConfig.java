@@ -15,11 +15,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 public class GlobalHandlerConfig implements WebMvcConfigurer{
+    @SuppressWarnings("null")
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:/");
     }
     
+    @SuppressWarnings("null")
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -29,6 +31,7 @@ public class GlobalHandlerConfig implements WebMvcConfigurer{
         .allowCredentials(true);
     }
     
+    @SuppressWarnings("null")
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
         exceptionResolvers.add(new HandlerExceptionResolver() {
