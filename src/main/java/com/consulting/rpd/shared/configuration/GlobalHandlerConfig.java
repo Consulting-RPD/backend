@@ -17,7 +17,7 @@ public class GlobalHandlerConfig{
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000/**", "https://rpd-consulting.netlify.app/**", "http://localhost:3000", "https://rpd-consulting.netlify.app")
+                .allowedOrigins("http://localhost:3000/**", "https://rpd-consulting.netlify.app/**", "http://localhost:3000", "https://rpd-consulting.netlify.app","https://frontrpd-h6cwanasa8h9azcf.eastus-01.azurewebsites.net/**", "https://frontrpd-h6cwanasa8h9azcf.eastus-01.azurewebsites.net")
                 .allowedMethods(
                     HttpMethod.GET.name(),
                     HttpMethod.POST.name(),
